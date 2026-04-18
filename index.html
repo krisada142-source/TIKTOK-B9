@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIKTOK - B9</title>
+    <style>
+        /* สไตล์พื้นหลังและฟอนต์ */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #121212; 
+            color: #ffffff; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding: 20px; 
+            margin: 0;
+        }
+
+        h1 { 
+            color: #ff4d4d; 
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+            font-size: 2rem;
+            text-shadow: 2px 2px 5px rgba(255, 77, 77, 0.3);
+        }
+
+        .stats { 
+            margin-bottom: 20px; 
+            font-weight: bold; 
+            color: #aaaaaa; 
+            font-size: 1.1rem; 
+        }
+
+        /* ตารางตัวเลข */
+        .grid-container { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 12px; 
+            width: 100%; 
+            max-width: 400px; 
+            background: #1e1e1e; 
+            padding: 20px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            border: 1px solid #333;
+        }
+
+        /* ช่องตัวเลข */
+        .number-box { 
+            aspect-ratio: 1/1; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            background-color: #252525; 
+            border: 2px solid #ff4d4d; 
+            color: #ff4d4d; 
+            border-radius: 10px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            font-size: 1.3rem; 
+            transition: all 0.3s ease; 
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .number-box:hover {
+            background-color: #331111;
+        }
+
+        /* เมื่อกดแล้ว */
+        .number-box.active { 
+            background-color: #28a745; 
+            border-color: #28a745;
+            color: white; 
+            box-shadow: 0 0 15px rgba(40, 167, 69, 0.5);
+            transform: scale(0.92);
+        }
+
+        .controls { margin-top: 30px; }
+
+        /* ปุ่มรีเซ็ต */
+        .reset-btn { 
+            padding: 12px 40px; 
+            background: transparent; 
+            color: #ff4d4d; 
+            border: 2px solid #ff4d4d; 
+            border-radius: 30px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .reset-btn:hover {
+            background: #ff4d4d;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>TIKTOK - B9</h1>
+    <div class="stats" id="counter">REPORTED: 0 / 32</div>
+
+    <div class="grid-container" id="grid"></div>
+
+    <div class="controls">
+        <button class="reset-btn" onclick="resetAll()">RESET ALL</button>
+    </div>
+
+    <script>
+        const grid = document.getElementById('grid');
+        const counter = document.getElementById('counter');
+        let checkedList = JSON.parse(localStorage.getItem('b9_tiktok_checkin')) || [];
+
+        function updateStats() {
+            counter.innerText = `REPORTED: ${checkedList.length} / 32`;
+            localStorage.setItem('b9_tiktok_checkin', JSON.stringify(checkedList));
+        }
+
+        for (let i = 1; i <= 32; i++) {
+            const box = document.createElement('div');
+            box.className = 'number-box';
+            if (checkedList.includes(i)) box.classList.add('active');
+            box.innerText = i;
+            
+            box.addEventListener('click', function() {
+                if (this.classList.toggle('active')) {
+                    checkedList.push(i);
+                } else {
+                    checkedList = checkedList.filter(item => item !== i);
+                }
+                updateStats();
+            });
+            grid.appendChild(box);
+        }
+
+        function resetAll() {
+            if (confirm('คุณต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่?')) {
+                checkedList = [];
+                document.querySelectorAll('.number-box').forEach(b => b.classList.remove('active'));
+                updateStats();
+            }
+        }
+        updateStats();
+    </script>
+</body>
+</html>
