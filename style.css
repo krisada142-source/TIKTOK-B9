@@ -1,0 +1,113 @@
+/* เพิ่มฟอนต์แนวเกม Free Fire */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
+
+body {
+    /* ปรับพื้นหลังให้มี Texture และลด padding ด้านล่าง */
+    background: radial-gradient(circle at center, #1e1e1e 0%, #121212 100%), 
+                url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiM4MDAwMDAiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTAgMGg0MHY0MEgwVjB6bTIwIDIwaDIwdjIwSDIWMjB6TTAgMjBoMjB2MjBIMFYyMHoyMCAwaDIwdjIwSDIwVjB6Ii8+PC9nPjwvZz48L3N2Zz4=');
+    padding-bottom: 100px; /* เว้นที่ให้แผง Free Fire */
+}
+
+h1 {
+    /* ปรับฟอนต์หัวข้อ */
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #ff4d4d;
+    font-size: 2.5rem;
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px rgba(255, 77, 77, 0.7);
+    margin-top: 30px;
+}
+
+/* ปรับตารางตัวเลขให้มีขอบดูดีขึ้น */
+.grid-container {
+    border: 3px solid #ff4d4d;
+    box-shadow: 0 0 20px rgba(255, 77, 77, 0.4);
+}
+
+.number-box {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+/* ปรับปุ่ม RESET ALL ให้อยู่มุมขวาล่างแบบ Fixed */
+.controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    margin: 0;
+    z-index: 100;
+}
+
+.reset-btn {
+    padding: 10px 25px;
+    border-radius: 5px; /* ทรงเหลี่ยม */
+    background: #ff4d4d;
+    color: black;
+    font-family: 'Roboto Condensed', sans-serif;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 0 #990000;
+}
+
+.reset-btn:hover {
+    background: #cc0000;
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #990000;
+}
+
+/* --- แผง Free Fire ใหม่ที่ด้านล่าง --- */
+.freefire-panel {
+    width: 95%;
+    max-width: 900px;
+    background: rgba(25, 25, 25, 0.9);
+    border: 1px solid #444;
+    border-radius: 10px;
+    margin-top: 40px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* แสงสีแดงจางๆ ด้านหลังแผง */
+.freefire-panel::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, transparent, #ff4d4d, transparent);
+    box-shadow: 0 0 15px #ff4d4d;
+}
+
+.freefire-panel .ff-widget {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-right: 1px solid #444;
+}
+
+.freefire-panel .ff-widget:last-child {
+    border-right: none;
+}
+
+.freefire-panel img {
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.freefire-panel h3 {
+    color: #ff4d4d;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.1rem;
+    margin: 0 0 5px 0;
+    letter-spacing: 1px;
+}
+
+.freefire-panel p {
+    color: #aaaaaa;
+    font-size: 0.9rem;
+    margin: 0;
+}
